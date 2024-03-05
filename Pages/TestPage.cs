@@ -6,90 +6,75 @@ namespace TestLab.Pages
 {
     public class TestPage
     {
-        private readonly IWebDriver driver;
-        
-        // Page URL
+        private readonly IWebDriver _driver;
         private const string Url = "https://formy-project.herokuapp.com/form";
-        
-        // Locators
-        private readonly By firstName = By.Id("first-name");
-        private readonly By lastName = By.Id("last-name");
-        private readonly By jobTitle = By.Id("job-title");
-        private readonly By education = By.Id("radio-button-2");
-        private readonly By gender = By.Id("checkbox-2");
-        private readonly By experienceSelect = By.Id("select-menu");
-        private readonly By datePicker = By.Id("datepicker");
-        private readonly By submitBtn = By.XPath("//*[@role='button']");
-        private readonly By msg = By.XPath("//*[@role='alert']");
-        
-        // Constructor
+        private readonly By _firstName = By.Id("first-name");
+        private readonly By _lastName = By.Id("last-name");
+        private readonly By _jobTitle = By.Id("job-title");
+        private readonly By _education = By.Id("radio-button-2");
+        private readonly By _gender = By.Id("checkbox-2");
+        private readonly By _experienceSelect = By.Id("select-menu");
+        private readonly By _datePicker = By.Id("datepicker");
+        private readonly By _submitBtn = By.XPath("//*[@role='button']");
+        private readonly By _msg = By.XPath("//*[@role='alert']");
+
         public TestPage(IWebDriver driver)
         {
-            this.driver = driver;
+            _driver = driver;
         }
 
-        // Navigate to login page
         private void NavigateToPage()
         {
-            driver.Navigate().GoToUrl(Url);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            _driver.Navigate().GoToUrl(Url);
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
-        // Set user details
         private void SetUserDetails(string firstname, string lastname, string jobtitle)
         {
-            driver.FindElement(firstName).SendKeys(firstname);
-            driver.FindElement(lastName).SendKeys(lastname);
-            driver.FindElement(jobTitle).SendKeys(jobtitle);
+            _driver.FindElement(_firstName).SendKeys(firstname);
+            _driver.FindElement(_lastName).SendKeys(lastname);
+            _driver.FindElement(_jobTitle).SendKeys(jobtitle);
         }
 
-        // Select gender
         private void SelectGender()
         {
-            driver.FindElement(gender).Click();
+            _driver.FindElement(_gender).Click();
         }
-        
-        // Select experience
+
         private void SelectExperience(string exp)
         {
-            IWebElement experienceElement = driver.FindElement(experienceSelect);
+            var experienceElement = _driver.FindElement(_experienceSelect);
             var selectElement = new SelectElement(experienceElement);
             selectElement.SelectByText(exp);
         }
-        
-        // Select education
+
         private void SelectEducation()
         {
-            driver.FindElement(education).Click();
-        }
-        
-        // Select date
-        private void SelectDate(string date)
-        {
-            driver.FindElement(datePicker).SendKeys(date);
-        }
-        
-        public string GetDate()
-        {
-            IWebElement element = driver.FindElement(datePicker);
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver; 
-            string date = (String) js.ExecuteScript("return arguments[0].value", element);
-            return date;
-        }
-        
-        // Get message
-        public string GetMessage()
-        {
-            return driver.FindElement(msg).Text;
-        }
-        
-        // Click on submit button
-        private void ClickSubmitButton()
-        {
-            driver.FindElement(submitBtn).Click();
+            _driver.FindElement(_education).Click();
         }
 
-        // Fill form
+        private void SelectDate(string date)
+        {
+            _driver.FindElement(_datePicker).SendKeys(date);
+        }
+
+        public string GetDate()
+        {
+            var element = _driver.FindElement(_datePicker);
+            var js = (IJavaScriptExecutor)_driver;
+            return (string)js.ExecuteScript("return arguments[0].value", element);
+        }
+
+        public string GetMessage()
+        {
+            return _driver.FindElement(_msg).Text;
+        }
+
+        private void ClickSubmitButton()
+        {
+            _driver.FindElement(_submitBtn).Click();
+        }
+
         public void FillForm(string firstname, string lastname, string jobtitle, string experience, string date)
         {
             NavigateToPage();

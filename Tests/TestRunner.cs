@@ -7,7 +7,7 @@ using Xunit.Abstractions;
 
 namespace TestLab.Tests
 {
-    public class Test1 : IDisposable
+    public class TestRunner : IDisposable
     {
         private readonly ITestOutputHelper _testOutputHelper;
         private IWebDriver _driver;
@@ -20,7 +20,7 @@ namespace TestLab.Tests
         private const string DateOption = "04/24/2023";
         private const string ExpectedMsg = "The form was successfully submitted!";
 
-        public Test1(ITestOutputHelper testOutputHelper)
+        public TestRunner(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
         }
@@ -48,6 +48,7 @@ namespace TestLab.Tests
             var actualMessage = _testPage.GetMessage();
             Assert.Equal(ExpectedMsg, actualMessage);
             _testOutputHelper.WriteLine("Message: " + actualMessage);
+            
             _driver.Quit();
         }
 

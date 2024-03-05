@@ -37,18 +37,13 @@ public static class WebDriverFactory
     private static IWebDriver CreateFirefoxDriver()
     {
         // Specify additional options as needed
-        FirefoxOptions options = new FirefoxOptions();
+        /*FirefoxOptions options = new FirefoxOptions();
         options.AddArgument("--start-maximized");
-        var path = "/usr/local/bin";
+        var path = "/Users/vishnu.patlolla/Downloads/gecko";
         FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(path);
-
-        // Create a ChromeDriver instance with the service and options
-        //IWebDriver driver = new ChromeDriver(service, options);*/
-
-        // Now you can use the ChromeDriver instance for automation
-        /*options.AddArgument("disable-infobars");
-        options.AddArgument("--disable-extensions");*/
+        service.FirefoxBinaryPath = "/Users/vishnu.patlolla/Applications/Firefox.exe";
         
-        return new FirefoxDriver(service, options);
+        return new FirefoxDriver(service, options);*/
+        return new FirefoxDriver();
     }
 }
