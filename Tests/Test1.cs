@@ -1,3 +1,4 @@
+using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using TestLab.Pages;
@@ -25,12 +26,11 @@ namespace TestLab.Tests
         }
 
         [Theory]
-        //[InlineData(BrowserType.Chrome)]
-        [InlineData(BrowserType.Firefox)]
+        [InlineData(BrowserType.Chrome)]
+        //[InlineData(BrowserType.Firefox)]
         public void RunTests(BrowserType browserType)
         {
-            //_driver = WebDriverFactory.CreateWebDriver(browserType);
-            _driver = new FirefoxDriver();
+            _driver = WebDriverFactory.CreateWebDriver(browserType);
             _testPage = new TestPage(_driver);
 
             _testPage.FillForm(Username, Password, Title, Experience, DateOption);
