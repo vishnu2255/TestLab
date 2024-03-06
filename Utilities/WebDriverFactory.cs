@@ -36,14 +36,8 @@ public static class WebDriverFactory
 
     private static IWebDriver CreateFirefoxDriver()
     {
-        // Specify additional options as needed
-        /*FirefoxOptions options = new FirefoxOptions();
-        options.AddArgument("--start-maximized");
-        var path = "/Users/vishnu.patlolla/Downloads/gecko";
-        FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(path);
-        service.FirefoxBinaryPath = "/Users/vishnu.patlolla/Applications/Firefox.exe";
-        
-        return new FirefoxDriver(service, options);*/
-        return new FirefoxDriver();
+        IWebDriver driver = new FirefoxDriver();     
+        driver.Manage().Window.Maximize();
+        return driver;
     }
 }

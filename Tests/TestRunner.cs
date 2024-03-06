@@ -27,7 +27,7 @@ namespace TestLab.Tests
 
         [Theory]
         [InlineData(BrowserType.Chrome)]
-        //[InlineData(BrowserType.Firefox)]
+        [InlineData(BrowserType.Firefox)]
         public void RunTests(BrowserType browserType)
         {
             _driver = WebDriverFactory.CreateWebDriver(browserType);
